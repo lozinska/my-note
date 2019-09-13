@@ -2,11 +2,36 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
         <title>My Web Page</title>
     </head>
 
     <body>
         <!-- This is a comment -->
-        <h1>Hello World!</h1>
+        <h1 align ="center">OSD600 Lab2</h1>
+        <h1></h1>
+        <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+        <script>
+        const fs = new Filer.FileSystem();
+        var text="Welcome to my notepad!\nFeel free to add your notes";
+        window.addEventListener('DOMContentLoaded', (event) => {
+           
+
+   fs.readFile('/note','utf8',function(err,data){
+    if(err)
+    document.querySelector("#note").innerHTML=text;
+  else { 
+      text=data;
+      document.getElementById('note').innerHTML+=text;  
+  }     
+   })
+window.setInterval(save,200);
+function save(){
+   fs.writeFile('/note',document.querySelector('#note').innerHTML);
+}
+});
+
+        </script>
+        <div id="note" contenteditable="true"></div>
     </body>
 </html>
