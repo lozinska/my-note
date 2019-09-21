@@ -19,15 +19,15 @@
 
    fs.readFile('/note','utf8',function(err,data){
     if(err)
-    document.querySelector("#note").innerHTML=text;
+    document.querySelector("#note").innerText =text;
   else { 
       text=data;
-      document.getElementById('note').innerHTML+=text;  
+      document.getElementById('note').innerText +=text;  
   }     
    })
 window.setInterval(save,200);
 function save(){
-   fs.writeFile('/note',document.querySelector('#note').innerHTML);
+   fs.writeFile('/note',document.querySelector('#note').innerText );
 }
 });
 
