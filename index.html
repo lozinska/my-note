@@ -17,8 +17,13 @@
             $(document).keydown(function(e){
                 if(e.ctrlKey && e.keyCode == 83){
                     e.preventDefault();
-                    fs.writeFile('/note',document.querySelector('#note').innerText );
-                    console.log("Saved");
+                    fs.writeFile('/note',document.querySelector('#note').innerText, function(e){
+                        if(e){
+                            console.log('Unable to save due to error', e);
+                        }else{
+                            console.log("Saved!");
+                        }
+                    });
                 }
             });
 
@@ -37,7 +42,13 @@
    })
 window.setInterval(save,200);
 function save(){
-   fs.writeFile('/note',document.querySelector('#note').innerText );
+   fs.writeFile('/note',document.querySelector('#note').innerText,function(e){
+    if(e){
+         console.log('Unable to save due to error', e);
+    }else{
+        console.log("Saved!");
+    }
+   });
 }
 });
 
